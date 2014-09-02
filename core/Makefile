@@ -8,8 +8,8 @@ CFLAGS    = -I. -mmcu=$(MCU) -DF_CPU=$(CPU_SPEED) -Os -w -std=c++0x -DARDUINO=15
 BOARD     = arduino
 LIBNAME   = lib$(BOARD).a
 
-INCDIR    = ../out/include/$(BOARD)
-LIBDIR    = ../out/lib
+INCDIR    = ../apps/include/$(BOARD)
+LIBDIR    = ../apps/lib
 
 OBJECTS   = \
 	new.o \
@@ -58,6 +58,8 @@ default: $(OBJECTS)
 	@cp *.h $(CP_HEADERS) $(INCDIR)/
 	@mv $(LIBNAME) $(LIBDIR)
 	@rm $(OBJECTS)
+clean:
+	@rm -rf ../apps/include ../apps/lib
 
 %.o : %.c
 	$(CC) $< $(CFLAGS) -c -o $@
